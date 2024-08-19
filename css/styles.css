@@ -85,3 +85,30 @@ html, body{
     background-color: #ddd;
 }
 
+.btn-container{
+ 
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.btn{
+    height: 50px;
+    width: 250px;
+    background-color: #FF8400;
+    color:white;
+    font-size: 14px;
+    font-weight: 700;
+    border 0;
+}
+
+.btn-left{
+    margin-right: 10px;
+    border-radius: 10px;
+
+}
+
+.btn-right{
+   margin-left: 10px;
+}
+
