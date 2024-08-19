@@ -32,7 +32,7 @@
                 <div class="form-control">
                  <label for="cep">CEP:</label>
                  <input name="cep" id="cep" class="form-input" type="text" placeholder="CEP">
-                    <div class="error-message">Campo requerido</div>
+                    <div class="error-message" data-error="cep">Campo requerido</div>
                 </div>
 
                 <div class="form-control">
@@ -42,7 +42,7 @@
                 <div class="form-control">
                 <label for="number">Número</label>
                 <input name="number" id ="number" class="form-input" type="text" placeholder="Número">
-                <div class="error-message">Campo requerido</div>
+                <div class="error-message" data-error="number">Campo requerido</div>
                 </div>
                 <div class="form-control">
                     <label for="city"></label>
@@ -52,8 +52,8 @@
                 </div>
                 
                 <div class="btn-container">
-                    <button class="btn btn-left" type="submit"> Salvar</button>
-                    <button class="btn btn-right">Limpar</button>
+                    <button name= "btnSave" class="btn btn-left" type="submit"> Salvar</button>
+                    <button name = "btnClear" class="btn btn-right">Limpar</button>
 
                 </div>
                 
@@ -82,6 +82,6 @@
 
    </main>
 
-    
+    <script type="module" src="js/viacep.js"></script>
 </body>
 </html>
