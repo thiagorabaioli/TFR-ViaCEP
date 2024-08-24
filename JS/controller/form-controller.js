@@ -1,5 +1,5 @@
 import Address from '../models/address.js';
-
+import * as requestService from '../services/request-service.js';
 
 function State(){
 
@@ -34,11 +34,17 @@ state.errorNumber = document.querySelector('[data-error="number"]');
 
 state.inputNumber.addEventListener('change', handleInputNumberChange);
 state.btnClear.addEventListener('click', handleBtnClearClick);
-
+state.btnSave.addEventListener('click', handleBtnSaveClick);
 
 
 }
 
+
+async function handleBtnSaveClick(event){
+    event.preventDefault();
+    const result =  await requestService.getJson('https://viacep.com.br/ws/01001000/json/');
+    console.log(result);
+}
 
 function handleInputNumberChange(event){
     if(event.target.value==""){
