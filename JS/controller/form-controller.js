@@ -32,5 +32,41 @@ state.btnClear = document.forms.newAddress.btnClear;
 state.errorCep = document.querySelector('[data-error="cep"]');
 state.errorNumber = document.querySelector('[data-error="number"]');
 
-    console.log(state);
+state.inputNumber.addEventListener('change', handleInputNumberChange);
+state.btnClear.addEventListener('click', handleBtnClearClick);
+
+
+
+}
+
+
+function handleInputNumberChange(event){
+    if(event.target.value==""){
+        setFormError("number", "Campo requerido"); 
+    }else
+     {setFormError("number", "");
+
+     }
+}
+
+
+function setFormError(key, value){
+    const element = document.querySelector(`[data-error="${key}"]`);
+    element.innerHTML = value;
+
+}
+ 
+function handleBtnClearClick(event){
+ event.preventDefault();
+ clearForm();
+}
+
+function clearForm(){
+    state.inputCep.value="";
+    state.inputCity.value="";
+    state.inputNumber.value="";
+    state.inputStreet.value="";
+
+    setFormError("number", "");
+    setFormError("cep", "");
 }
