@@ -1,5 +1,5 @@
 import Address from '../models/address.js';
-import * as requestService from '../services/request-service.js';
+import *as addressService from '../services/address-service.js';
 
 function State(){
 
@@ -35,15 +35,21 @@ state.errorNumber = document.querySelector('[data-error="number"]');
 state.inputNumber.addEventListener('change', handleInputNumberChange);
 state.btnClear.addEventListener('click', handleBtnClearClick);
 state.btnSave.addEventListener('click', handleBtnSaveClick);
-
+state.inputCep.addEventListener('change', handleInputCepChange);
 
 }
 
 
-async function handleBtnSaveClick(event){
+async function handleInputCepChange(event){
+
+    const cep = event.target.value;
+    const address = await addressService.findByCep(cep);
+    console.log(address);
+}
+
+async function handleBtnSaveClick(event){ //Função assíncrona.
     event.preventDefault();
-    const result =  await requestService.getJson('https://viacep.com.br/ws/01001000/json/');
-    console.log(result);
+    console.log(event.target);
 }
 
 function handleInputNumberChange(event){
