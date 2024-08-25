@@ -43,8 +43,20 @@ state.inputCep.addEventListener('change', handleInputCepChange);
 async function handleInputCepChange(event){
 
     const cep = event.target.value;
+
+    try{
     const address = await addressService.findByCep(cep);
-    console.log(address);
+    state.inputCity.value = address.city;
+    state.inputStreet.value = address.street;
+    state.address = address;
+    setFormError("cep", "");
+   state.inputNumber.focus();
+    } catch (e){
+        state.inputCity.value = "";
+        state.inputStreet.value = "";
+        setFormError("cep", "Informe CEP válido");
+
+    }
 }
 
 async function handleBtnSaveClick(event){ //Função assíncrona.
