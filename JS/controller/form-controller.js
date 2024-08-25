@@ -1,5 +1,6 @@
 import Address from '../models/address.js';
 import *as addressService from '../services/address-service.js';
+import * as listController from './list-controller.js';
 
 function State(){
 
@@ -40,6 +41,7 @@ state.inputCep.addEventListener('change', handleInputCepChange);
 
 }
 
+
 function handleInputNumberKeyup(event){
    state.address.number = event.target.value;
 }
@@ -66,7 +68,22 @@ async function handleInputCepChange(event){
 
 async function handleBtnSaveClick(event){ //Função assíncrona.
     event.preventDefault();
-    console.log(state.address);
+
+    const erros = addressService.getErros(state.address);
+    const keys = Object.keys(erros);
+
+    if(keys.length >0){
+        for(let i=0; i< keys.length; i++){
+            setFormError(keys[i], erros[keys[i]]);
+        }
+       
+    }else{
+        listController.addCard(state.address);
+        clearForm();
+    }
+
+  
+   
 }
 
 function handleInputNumberChange(event){
@@ -95,6 +112,8 @@ function clearForm(){
     state.inputCity.value="";
     state.inputNumber.value="";
     state.inputStreet.value="";
+
+    state.address = new Address(); //Limpa o Address.
 
     setFormError("number", "");
     setFormError("cep", "");
